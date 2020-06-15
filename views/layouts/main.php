@@ -77,6 +77,7 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
+<script defer src="//use.fontawesome.com/releases/v5.3.1/js/all.js" crossorigin="anonymous"></script>
 </body>
 </html>
 <?php $this->endPage() ?>
