@@ -19,13 +19,21 @@ class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
-    public $css = [
-        'css/site.css',
-    ];
+    public $css = [];
     public $js = [
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
+
+	public function init()
+	{
+		$this->loadCacheBustedAsset('css/site.css', 'css');
+	}
+
+	protected function loadCacheBustedAsset($style, $type)
+	{
+		$this->$type[] = $style . '?v=' . filemtime( \Yii::getAlias('@webroot') . '/' . $style);
+	}
 }
