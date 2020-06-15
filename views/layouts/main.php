@@ -40,11 +40,11 @@ AppAsset::register($this);
         'items' => [
             [
                 'label' => 'Orders',
-                'url' => ['/site/orders'],
+                'url' => ['/orders'],
                 'visible' => !Yii::$app->user->isGuest],
             [
                 'label' => 'Settings',
-                'url' => ['/site/settings'],
+                'url' => ['/settings'],
                 'visible' => !Yii::$app->user->isGuest
             ],
             Yii::$app->user->isGuest ? (
