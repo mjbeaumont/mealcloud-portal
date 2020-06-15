@@ -6,6 +6,7 @@ $user = require(__DIR__ . '/components/user.php');
 
 $config = [
     'id' => 'basic',
+	'name' => 'Unconvential Diner Customer Portal',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -47,6 +48,11 @@ $config = [
             'rules' => [
             ],
         ],
+    ],
+    'modules' => [
+	    'admin' => [
+		    'class' => 'app\modules\admin\Module',
+	    ]
     ],
     'params' => $params,
 ];
