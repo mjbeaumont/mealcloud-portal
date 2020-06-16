@@ -19,8 +19,7 @@ $form = kartik\form\ActiveForm::begin(
 	] );
 ?>
 
-
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingOne">
             <h4 class="panel-title">
@@ -29,43 +28,40 @@ $form = kartik\form\ActiveForm::begin(
                     General Settings
                 </a>
             </h4>
-            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body">
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <ul class="list-group">
+                <li class="list-group-item clearfix">
+                    <span>Auto-send to kitchen</span>
+                    <div class="pull-right">
+					    <?php echo $form->field( $model, 'auto_send' )
+					                    ->widget( SwitchInput::class);
+					    ?>
+                    </div>
 
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item clearfix">
-                        <span>Auto-send to kitchen</span>
-                        <div class="pull-right">
-                            <?php echo $form->field( $model, 'auto_send' )
-                                            ->widget( SwitchInput::class);
-							?>
-                        </div>
-
-                    </li>
-                    <li class="list-group-item clearfix">
-                        <span>Pickup Time</span>
-                        <div class="pull-right">
-                            <?php echo $form->field($model, 'pickup_time')
-                               ->dropDownList(\Yii::$app->params['settingsTimeOptions'])?>
-                        </div>
-                    </li>
-                    <li class="list-group-item clearfix">
-                        <span>Delivery Time</span>
-                        <div class="pull-right">
-                            <?php echo $form->field($model, 'delivery_time')
-                               ->dropDownList(\Yii::$app->params['settingsTimeOptions'])?>
-                        </div>
-                    </li>
-                    <li class="list-group-item clearfix">
-                        <span>Default Snooze Minutes</span>
-                        <div class="pull-right">
-                            <?php echo $form->field($model, 'snooze')
-                               ->dropDownList(\Yii::$app->params['settingsTimeOptions'])?>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                </li>
+                <li class="list-group-item clearfix">
+                    <span>Pickup Time</span>
+                    <div class="pull-right">
+					    <?php echo $form->field($model, 'pickup_time')
+					                    ->dropDownList(\Yii::$app->params['settingsTimeOptions'])?>
+                    </div>
+                </li>
+                <li class="list-group-item clearfix">
+                    <span>Delivery Time</span>
+                    <div class="pull-right">
+					    <?php echo $form->field($model, 'delivery_time')
+					                    ->dropDownList(\Yii::$app->params['settingsTimeOptions'])?>
+                    </div>
+                </li>
+                <li class="list-group-item clearfix">
+                    <span>Default Snooze Minutes</span>
+                    <div class="pull-right">
+					    <?php echo $form->field($model, 'snooze')
+					                    ->dropDownList(\Yii::$app->params['settingsTimeOptions'])?>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
     <div class="panel panel-default">
@@ -76,17 +72,14 @@ $form = kartik\form\ActiveForm::begin(
                     Printer Settings
                 </a>
             </h4>
-            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>Printer Name:</strong> Star Micronics TSP650II Printer</li>
-                    <li class="list-group-item"><strong>Printer Status:</strong> <span
-                                style="color: green">Connected</span></li>
-                    <li class="list-group-item"><strong>Poll Interval</strong>: 5 seconds</li>
-                </ul>
-            </div>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Printer Name:</strong> Star Micronics TSP650II Printer</li>
+                <li class="list-group-item"><strong>Printer Status:</strong> <span
+                            style="color: green">Connected</span></li>
+                <li class="list-group-item"><strong>Poll Interval</strong>: 5 seconds</li>
+            </ul>
         </div>
     </div>
 </div>
