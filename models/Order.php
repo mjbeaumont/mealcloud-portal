@@ -42,6 +42,11 @@ class Order extends \yii\db\ActiveRecord
 	CONST TYPE_PICKUP = 0;
 	CONST TYPE_DELIVERY = 1;
 
+	CONST SOURCE_MEALCLOUD = 0;
+
+	CONST PRINTED_NO = 0;
+	CONST PRINTED_YES = 1;
+
     /**
      * {@inheritdoc}
      */
@@ -50,7 +55,18 @@ class Order extends \yii\db\ActiveRecord
         return 'order';
     }
 
-    /**
+    public function beforeSave( $insert ) {
+	    if (parent::beforeSave( $insert )) {
+	    	$this->setAttributes([
+	    		'status' => self::STATUS_NEW,
+			    'source' => self::SOURCE_MEALCLOUD,
+			    'printed' => self::PRINTED_NO,
+			    'number' => '100000' . $this->id
+		    ]);
+	    }
+    }
+
+	/**
      * {@inheritdoc}
      */
     public function rules()
@@ -127,5 +143,15 @@ class Order extends \yii\db\ActiveRecord
 		    	break;
 	    }
 
+    }
+
+    public function getApiResponse()
+    {
+    	$order = [
+    		'number' => $this->number,
+
+	    ];
+
+    	return $order;
     }
 }
