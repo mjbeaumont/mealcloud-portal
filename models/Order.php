@@ -39,6 +39,9 @@ class Order extends \yii\db\ActiveRecord
 	CONST STATUS_COMPLETED = 3;
 	CONST STATUS_CANCELLED = 4;
 
+	CONST TYPE_PICKUP = 0;
+	CONST TYPE_DELIVERY = 1;
+
     /**
      * {@inheritdoc}
      */

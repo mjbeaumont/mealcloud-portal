@@ -14,6 +14,21 @@ class OrderQuery extends \yii\db\ActiveQuery
         return $this->andWhere('[[status]]=1');
     }*/
 
+	public function new()
+	{
+		return $this->andWhere(['status' => Order::STATUS_NEW]);
+	}
+
+	public function inProgress()
+	{
+		return $this->andWhere(['status' => Order::STATUS_PROCESSING]);
+	}
+
+	public function completed()
+	{
+		return $this->andWhere(['status' => Order::STATUS_COMPLETED]);
+	}
+
     /**
      * {@inheritdoc}
      * @return Order[]|array

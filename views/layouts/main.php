@@ -40,7 +40,7 @@ AppAsset::register($this);
         'items' => [
             [
                 'label' => 'Orders',
-                'url' => ['/orders'],
+                'url' => ['/order'],
                 'visible' => !Yii::$app->user->isGuest],
             [
                 'label' => 'Settings',
