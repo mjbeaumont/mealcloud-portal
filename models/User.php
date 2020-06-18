@@ -13,15 +13,10 @@ use app\models\query\UserQuery;
  * @property string $password
  * @property string $first
  * @property string $last
- * @property string $email
+ * @property string $username
  * @property string $auth_key
- * @property string $password_reset_token
- * @property string $zip
- * @property string $hdyh
  * @property integer $group
- * @property string $braintree_id
  * @property integer $status
- * @property string $phone
  */
 
 class User extends ActiveRecord implements IdentityInterface
@@ -105,7 +100,9 @@ class User extends ActiveRecord implements IdentityInterface
 		if (parent::beforeSave($insert)) {
 			if ($this->isNewRecord) {
 				$this->auth_key = \Yii::$app->security->generateRandomString();
+				$this->hashPassword();
 			}
+			return true;
 		}
 		return false;
 	}
