@@ -11,13 +11,22 @@ use yii\helpers\Html;
         <div class="button-container">
 		    <?php if ($model->status === $model::STATUS_NEW):?>
 			    <?= Html::a('Accept', ['/order/accept', 'id' => $model->id], ['class'=>'btn btn-success']) ?>
-			    <?= Html::a('Cancel', ['/controller/action'], ['class'=>'btn btn-danger', 'confirm' => 'Are you sure you want to cancel this order?']) ?>
+			    <?= Html::a('Cancel', ['/order/cancel', 'id' => $model->id],
+                    ['class'=>'btn btn-danger',
+                     'data' => [
+                        'confirm' => 'This will refund ' . \Yii::$app->formatter->asCurrency($model->total) . ' to your customer and cancel the order. Are you sure?'
+                     ]])
+                ?>
 		    <?php endif?>
 		    <?= Html::submitButton( 'Reprint', [ 'class' => 'btn btn-info' ] ) ?>
         </div>
     </div>
     <div class="panel-body">
         <div>Pickup Order @ <?php echo \Yii::$app->formatter->asDateTime($model->date, 'short')?></div>
+        <div><?php echo $model->name?> &lt;<?php echo $model->email?>&gt;</div>
+        <?php if ($model->phone):?>
+        <?php echo $model->phone?>
+        <?php endif?>
             <div><?php echo $model->CountItems?> item(s)</div>
 		    <?php if ($model->instructions):?>
                 <div class="text-danger"> <?php echo $model->instructions?></div>

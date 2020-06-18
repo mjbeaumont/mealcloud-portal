@@ -46,6 +46,17 @@ class OrderController extends \yii\web\Controller
 		return $this->redirect(['index']);
 	}
 
+	public function actionCancel($id)
+	{
+		$model = Order::find()->where(["id" => $id])->one();
+		if (!$model) {
+			return $this->redirect("index");
+		}
+		$model->updateAttributes(['status' => $model::STATUS_CANCELLED]);
+		\Yii::$app->session->setFlash('success', 'Order ' . $model->number . ' cancelled.');
+		return $this->redirect(['index']);
+	}
+
     public function actionDetail($id)
     {
     	$model = Order::find()->where(["id" => $id])->one();
