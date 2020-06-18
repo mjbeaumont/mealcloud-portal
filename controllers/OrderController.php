@@ -35,6 +35,17 @@ class OrderController extends \yii\web\Controller
 		];
 	}
 
+	public function actionAccept($id)
+	{
+		$model = Order::find()->where(["id" => $id])->one();
+		if (!$model) {
+			return $this->redirect("index");
+		}
+		$model->updateAttributes(['status' => $model::STATUS_PROCESSING]);
+		\Yii::$app->session->setFlash('success', 'Order ' . $model->number . ' now in process.');
+		return $this->redirect(['index']);
+	}
+
     public function actionDetail($id)
     {
     	$model = Order::find()->where(["id" => $id])->one();

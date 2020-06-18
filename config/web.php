@@ -49,7 +49,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-            	'order/detail/<id:[\d]+>' => 'order/detail'
+            	'order/<action:[\w]+>/<id:[\d]+>' => 'order/<action>'
             ],
         ],
     ],

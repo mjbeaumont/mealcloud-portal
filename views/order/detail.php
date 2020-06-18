@@ -10,7 +10,7 @@ use yii\helpers\Html;
         <h3>Order details for #<?php echo $model->number?></h3>
         <div class="button-container">
 		    <?php if ($model->status === $model::STATUS_NEW):?>
-			    <?= Html::a('Accept', ['#'], ['class'=>'btn btn-success']) ?>
+			    <?= Html::a('Accept', ['/order/accept', 'id' => $model->id], ['class'=>'btn btn-success']) ?>
 			    <?= Html::a('Cancel', ['/controller/action'], ['class'=>'btn btn-danger', 'confirm' => 'Are you sure you want to cancel this order?']) ?>
 		    <?php endif?>
 		    <?= Html::submitButton( 'Reprint', [ 'class' => 'btn btn-info' ] ) ?>
