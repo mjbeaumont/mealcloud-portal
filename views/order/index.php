@@ -36,7 +36,9 @@ use yii\helpers\Html;
         </div>
         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
-                Orders Go Here
+	            <?php echo $this->render("_order-list", [
+		            'orders' => $inProgress
+	            ])?>
             </div>
         </div>
     </div>
@@ -51,7 +53,9 @@ use yii\helpers\Html;
         </div>
         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
             <div class="panel-body">
-                Orders Go Here
+	            <?php echo $this->render("_order-list", [
+		            'orders' => $completed
+	            ])?>
             </div>
         </div>
     </div>
