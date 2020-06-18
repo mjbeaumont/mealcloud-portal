@@ -3,10 +3,20 @@
 namespace app\controllers;
 use app\models\Order;
 use yii\filters\AccessControl;
+use yii\filters\Cors;
 use yii\web\Application;
 
 class OrderController extends \yii\web\Controller
 {
+
+	public function beforeAction($action)
+	{
+		if ( $action->id === 'process') {
+			$this->enableCsrfValidation = false;
+		}
+
+		return parent::beforeAction($action);
+	}
 
 	public function behaviors()
 	{
@@ -21,7 +31,7 @@ class OrderController extends \yii\web\Controller
 						'roles' => ['@'],
 					],
 				],
-			]
+			],
 		];
 	}
 
@@ -46,19 +56,18 @@ class OrderController extends \yii\web\Controller
 
     public function actionProcess()
     {
-	    \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-		$payload = \Yii::$app->request->getBodyParams();
-		$order = new Order($payload);
-		$response = $order->validate();
 
-	    if ($response) {
-		    \Yii::$app->response->setStatusCode(422);
-		    return $response;
+	    $json = file_get_contents('php://input');
+	    $payload = json_decode($json, true);
+
+	    $items = $payload['items'];
+	    unset($payload['items']);
+
+	    $order = new Order();
+	    $order->load($payload, '');
+	    if ($order->load($payload, '') && $order->save()) {
+		    $order->saveItems($items);
 	    }
-
-	    $order->save();
-	    \Yii::$app->response->setStatusCode(201);
-	    return ['number' => $order->number];
     }
 
 }

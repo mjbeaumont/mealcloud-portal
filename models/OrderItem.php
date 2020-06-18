@@ -12,7 +12,7 @@ use Yii;
  * @property string|null $description
  * @property int|null $qty
  * @property float|null $price
- * @property string|null $instructions
+ * @property string|null $requests
  */
 class OrderItem extends \yii\db\ActiveRecord
 {
@@ -32,7 +32,7 @@ class OrderItem extends \yii\db\ActiveRecord
         return [
             [['order_id', 'qty'], 'integer'],
             [['price'], 'number'],
-            [['instructions'], 'string'],
+            [['requests'], 'string'],
             [['description'], 'string', 'max' => 255],
         ];
     }
@@ -48,7 +48,7 @@ class OrderItem extends \yii\db\ActiveRecord
             'description' => 'Description',
             'qty' => 'Qty',
             'price' => 'Price',
-            'instructions' => 'Instructions',
+            'requests' => 'Special Requests',
         ];
     }
 

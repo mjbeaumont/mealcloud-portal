@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\base\InvalidValueException;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "order".
@@ -33,6 +34,7 @@ use yii\base\InvalidValueException;
 class Order extends \yii\db\ActiveRecord
 {
 
+
 	CONST STATUS_NEW = 0;
 	CONST STATUS_PROCESSING = 1;
 	CONST STATUS_DELIVERING = 2;
@@ -55,15 +57,50 @@ class Order extends \yii\db\ActiveRecord
         return 'order';
     }
 
-    public function beforeSave( $insert ) {
-	    if (parent::beforeSave( $insert )) {
-	    	$this->setAttributes([
-	    		'status' => self::STATUS_NEW,
-			    'source' => self::SOURCE_MEALCLOUD,
-			    'printed' => self::PRINTED_NO,
-			    'number' => '100000' . $this->id
-		    ]);
+    public function behaviors() {
+	   return [
+	   	    'timestamp' => [
+	   	    	'class' => TimestampBehavior::class
+	        ]
+	   ];
+    }
+
+	/**
+	 * @return yii\db\ActiveQuery
+	 */
+    public function getOrderItems()
+    {
+    	return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
+    }
+
+    public function beforeValidate() {
+
+    	$this->curbside = (int)$this->curbside;
+    	$this->utensils = (int)$this->utensils;
+
+	    return parent::beforeValidate();
+    }
+
+	public function beforeSave( $insert ) {
+
+	    $this->setAttributes([
+	        'status' => self::STATUS_NEW,
+			'source' => self::SOURCE_MEALCLOUD,
+			'printed' => self::PRINTED_NO,
+			'type' => self::TYPE_PICKUP
+	    ]);
+
+	    return parent::beforeSave($insert);
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+
+    	if ($insert) {
+    		$this->updateAttributes(['number' => '100000' . $this->id]);
 	    }
+
+    	return parent::afterSave($insert, $changedAttributes);
     }
 
 	/**
@@ -142,14 +179,21 @@ class Order extends \yii\db\ActiveRecord
 		    	throw new InvalidValueException("Status should match a class constant in app\models\Order", 500);
 		    	break;
 	    }
+    }
 
+    public function saveItems($items)
+    {
+    	foreach($items as $item) {
+    		$orderItem = new OrderItem($item);
+    		$orderItem->order_id = $this->id;
+    		$orderItem->save();
+	    }
     }
 
     public function getApiResponse()
     {
     	$order = [
     		'number' => $this->number,
-
 	    ];
 
     	return $order;
