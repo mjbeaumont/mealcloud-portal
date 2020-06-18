@@ -60,4 +60,9 @@ class OrderItem extends \yii\db\ActiveRecord
     {
         return new OrderItemQuery(get_called_class());
     }
+
+    public function getSubtotal()
+    {
+    	return $this->qty * $this->price;
+    }
 }

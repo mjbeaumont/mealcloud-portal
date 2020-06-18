@@ -35,9 +35,15 @@ class OrderController extends \yii\web\Controller
 		];
 	}
 
-    public function actionDetail()
+    public function actionDetail($id)
     {
-        return $this->render('detail');
+    	$model = Order::find()->where(["id" => $id])->one();
+    	if (!$model) {
+    		return $this->redirect("index");
+	    }
+        return $this->render('detail', [
+        	'model' => $model
+        ]);
     }
 
     public function actionIndex()

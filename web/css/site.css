@@ -122,3 +122,29 @@ a.desc:after {
 .order-item .btn {
     margin-left: 5px;
 }
+
+.order-heading {
+    position: relative;
+}
+
+.order-heading .button-container {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.totals {
+    margin-top: 30px;
+}
+
+.total-line {
+    display: flex;
+    width: 400px;
+    justify-content: space-between;
+    padding-bottom: .5em;
+}
+
+.total-description {
+    font-weight: bold;
+}
