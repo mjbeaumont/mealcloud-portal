@@ -113,3 +113,12 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-item .btn {
+    margin-left: 5px;
+}

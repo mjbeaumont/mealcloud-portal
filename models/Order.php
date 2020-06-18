@@ -157,6 +157,28 @@ class Order extends \yii\db\ActiveRecord
         return new OrderQuery(get_called_class());
     }
 
+    public function getCountItems()
+    {
+    	return array_reduce($this->orderItems, function($carry, $item) {
+			return $carry + $item->qty;
+	    }, 0);
+    }
+
+    public function getTypeDescription()
+    {
+	    switch ($this->status) {
+		    case self::TYPE_PICKUP:
+			    return "Pickup";
+			    break;
+		    case self::TYPE_DELIVERY:
+			    return "Delivery";
+			    break;
+		    default:
+			    throw new InvalidValueException("Type should match a class constant in app\models\Order", 500);
+			    break;
+	    }
+    }
+
     public function getStatusDescription()
     {
     	switch ($this->status) {
