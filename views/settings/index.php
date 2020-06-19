@@ -23,14 +23,23 @@ $form = kartik\form\ActiveForm::begin(
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingOne">
             <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                <a role="button" data-toggle="collapse" href="#collapseOne"
                    aria-expanded="true" aria-controls="collapseOne">
                     General Settings
                 </a>
             </h4>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
             <ul class="list-group">
+                <li class="list-group-item clearfix">
+                    <span>Auto-accept orders</span>
+                    <div class="pull-right">
+			            <?php echo $form->field( $model, 'auto_accept' )
+			                            ->widget( SwitchInput::class);
+			            ?>
+                    </div>
+
+                </li>
                 <li class="list-group-item clearfix">
                     <span>Auto-send to kitchen</span>
                     <div class="pull-right">
@@ -54,30 +63,23 @@ $form = kartik\form\ActiveForm::begin(
 					                    ->dropDownList(\Yii::$app->params['settingsTimeOptions'])?>
                     </div>
                 </li>
-                <li class="list-group-item clearfix">
-                    <span>Default Snooze Minutes</span>
-                    <div class="pull-right">
-					    <?php echo $form->field($model, 'snooze')
-					                    ->dropDownList(\Yii::$app->params['settingsTimeOptions'])?>
-                    </div>
-                </li>
             </ul>
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingTwo">
             <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+                <a role="button" data-toggle="collapse" href="#collapseTwo"
                    aria-expanded="true" aria-controls="collapseTwo">
                     Printer Settings
                 </a>
             </h4>
         </div>
-        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
             <ul class="list-group">
                 <li class="list-group-item"><strong>Printer Name:</strong> Star Micronics TSP650II Printer</li>
                 <li class="list-group-item"><strong>Printer Status:</strong> <span
-                            style="color: green">Connected</span></li>
+                            class="text-success">Connected</span></li>
                 <li class="list-group-item"><strong>Poll Interval</strong>: 5 seconds</li>
             </ul>
         </div>
