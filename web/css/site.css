@@ -184,7 +184,8 @@ a.desc:after {
 }
 
 .navbar-inverse .navbar-toggle:hover,
-.navbar-inverse .navbar-toggle:focus {
+.navbar-inverse .navbar-toggle:focus,
+.navbar-inverse .navbar-nav > .active > a {
     background-color: transparent;
 }
 
