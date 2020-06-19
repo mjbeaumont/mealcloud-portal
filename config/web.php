@@ -6,7 +6,7 @@ $user = require(__DIR__ . '/components/user.php');
 
 $config = [
     'id' => 'basic',
-	'name' => 'Unconvential Diner Customer Portal',
+	'name' => 'Mealcloud',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
