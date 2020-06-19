@@ -74,9 +74,9 @@ class OrderController extends \yii\web\Controller
     public function actionIndex()
     {
 
-    	$new = Order::find()->new()->all();
-    	$inProgress = Order::find()->inProgress()->all();
-    	$completed = Order::find()->completed()->all();
+    	$new = Order::find()->new()->orderBy(["date" => SORT_DESC])->all();
+    	$inProgress = Order::find()->inProgress()->orderBy(["date" => SORT_DESC])->all();
+    	$completed = Order::find()->completed()->orderBy(["date" => SORT_DESC])->all();
 
         return $this->render('index', [
         	'new' => $new,
