@@ -130,6 +130,14 @@ a.desc:after {
     transform: translateY(-50%);
 }
 
+@media screen and (max-width: 580px) {
+    .order-heading .button-container {
+        position: relative;
+        display: block;
+        transform: translateY(0);
+    }
+}
+
 .totals {
     margin-top: 30px;
 }
@@ -178,4 +186,22 @@ a.desc:after {
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
     background-color: transparent;
+}
+
+.back-button-container {
+    margin-bottom: 15px;
+}
+
+.prep-time {
+    width: 250px;
+    margin-top: 2em;
+}
+
+.prep-time > * {
+    display: inline-block;
+}
+
+.prep-time .form-control {
+    width: auto;
+    margin-left: 15px;
 }

@@ -2,9 +2,14 @@
 /***
  * @var $this yii\web\View
  * @var $model app\models\Order
+ * @var $settings app\models\Settings
  */
 use yii\helpers\Html;
 ?>
+<div class="back-button-container">
+    <?php echo Html::a("<i class=\"fa fa-fw fa-long-arrow-alt-left\"></i> Back to order list", ['/order'], ['class' => 'btn btn-default btn-lg']);?>
+</div>
+
 <div class="panel panel-default">
     <div class="panel-heading clearfix order-heading">
         <h3>Order details for #<?php echo $model->number?></h3>
@@ -36,6 +41,12 @@ use yii\helpers\Html;
 	        <?php endif?>
             <?php if ($model->curbside):?>
                 <div class="text-danger">Curbside pickup requested.</div>
+            <?php endif?>
+            <?php if ($model->status === $model::STATUS_NEW):?>
+                <div class="form-group highlight-addon prep-time">
+                    <label>Prep Time:</label>
+                    <?php echo Html::dropDownList('prep_time', $settings['pickup_time'], \Yii::$app->params['settingsTimeOptions'], ['class' => 'form-control'])?>
+                </div>
             <?php endif?>
     </div>
 </div>

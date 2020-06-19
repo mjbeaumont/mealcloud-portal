@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 use app\models\Order;
+use app\models\Settings;
 use yii\filters\AccessControl;
 use yii\filters\Cors;
 use yii\web\Application;
@@ -60,11 +61,13 @@ class OrderController extends \yii\web\Controller
     public function actionDetail($id)
     {
     	$model = Order::find()->where(["id" => $id])->one();
+    	$settings = Settings::find()->where(["id" => 1])->one();
     	if (!$model) {
     		return $this->redirect("index");
 	    }
         return $this->render('detail', [
-        	'model' => $model
+        	'model' => $model,
+	        'settings' => $settings
         ]);
     }
 
