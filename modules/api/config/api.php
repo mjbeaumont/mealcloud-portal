@@ -56,7 +56,7 @@ $config = [
 ];
 
 if (YII_ENV_DEV) {
-	$config['params']['cors']['Origin'] = ['http://localhost:8080', 'http://localhost:8081'];
+	$config['params']['cors']['Origin'] = ['http://localhost:8080', 'http://localhost:8081', 'https://mealcloud.beaumontwebdev.com'];
 }
 
 return $config;
