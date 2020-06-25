@@ -66,6 +66,7 @@ $config = [
 	    ]
     ],
     'params' => $params,
+	'timeZone' => 'America/New_York'
 ];
 
 if (YII_ENV_DEV) {
