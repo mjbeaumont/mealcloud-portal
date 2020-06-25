@@ -84,21 +84,4 @@ class OrderController extends \yii\web\Controller
 	        'completed' => $completed
         ]);
     }
-
-    public function actionProcess()
-    {
-
-	    $json = file_get_contents('php://input');
-	    $payload = json_decode($json, true);
-
-	    $items = $payload['items'];
-	    unset($payload['items']);
-
-	    $order = new Order();
-	    $order->load($payload, '');
-	    if ($order->load($payload, '') && $order->save()) {
-		    $order->saveItems($items);
-	    }
-    }
-
 }

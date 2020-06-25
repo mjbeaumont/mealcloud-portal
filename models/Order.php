@@ -49,6 +49,8 @@ class Order extends \yii\db\ActiveRecord
 	CONST PRINTED_NO = 0;
 	CONST PRINTED_YES = 1;
 
+	public $items;
+
     /**
      * {@inheritdoc}
      */
@@ -98,6 +100,9 @@ class Order extends \yii\db\ActiveRecord
 
     	if ($insert) {
     		$this->updateAttributes(['number' => '100000' . $this->id]);
+    		if (count($this->items)) {
+    			$this->saveItems();
+		    }
 	    }
 
     	return parent::afterSave($insert, $changedAttributes);
@@ -115,6 +120,7 @@ class Order extends \yii\db\ActiveRecord
             [['number'], 'string', 'max' => 30],
             [['name', 'email'], 'string', 'max' => 255],
             [['phone'], 'string', 'max' => 20],
+	        [['items'], 'safe']
         ];
     }
 
@@ -203,9 +209,9 @@ class Order extends \yii\db\ActiveRecord
 	    }
     }
 
-    public function saveItems($items)
+    public function saveItems()
     {
-    	foreach($items as $item) {
+    	foreach($this->items as $item) {
     		$orderItem = new OrderItem($item);
     		$orderItem->order_id = $this->id;
     		$orderItem->save();

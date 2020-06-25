@@ -8,7 +8,7 @@ $config = [
     'id' => 'basic',
 	'name' => 'Mealcloud',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'api'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -53,14 +53,17 @@ $config = [
             	'portal' => 'portal/order',
             	'portal/login' => 'portal/default/login',
             	'portal/<controller:[\w\-]+>/<action:[\w\-]+>' => 'portal/<controller>/<action>',
-            	'order/<action:[\w]+>/<id:[\d]+>' => 'order/<action>'
+            	'api/<controller:[\w\-]+>/<action:[\w\-]+>' => 'api/<controller>/<action>'
             ],
         ],
     ],
     'modules' => [
 	    'portal' => [
-		    'class' => 'app\modules\portal\Module',
+		    'class' => app\modules\portal\Module::class
 	    ],
+	    'api' => [
+	    	'class' => app\modules\api\Module::class
+	    ]
     ],
     'params' => $params,
 ];
