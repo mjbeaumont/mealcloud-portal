@@ -42,12 +42,6 @@ use yii\helpers\Html;
             <?php if ($model->curbside):?>
                 <div class="text-danger">Curbside pickup requested.</div>
             <?php endif?>
-            <?php if ($model->status === $model::STATUS_NEW):?>
-                <div class="form-group highlight-addon prep-time">
-                    <label>Prep Time:</label>
-                    <?php echo Html::dropDownList('prep_time', $settings['pickup_time'], \Yii::$app->params['settingsTimeOptions'], ['class' => 'form-control'])?>
-                </div>
-            <?php endif?>
     </div>
 </div>
 
