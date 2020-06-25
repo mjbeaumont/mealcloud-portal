@@ -13,6 +13,7 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+	'defaultRoute' => 'portal/order',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -49,14 +50,17 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+            	'portal' => 'portal/order',
+            	'portal/login' => 'portal/default/login',
+            	'portal/<controller:[\w\-]+>/<action:[\w\-]+>' => 'portal/<controller>/<action>',
             	'order/<action:[\w]+>/<id:[\d]+>' => 'order/<action>'
             ],
         ],
     ],
     'modules' => [
-	    'admin' => [
-		    'class' => 'app\modules\admin\Module',
-	    ]
+	    'portal' => [
+		    'class' => 'app\modules\portal\Module',
+	    ],
     ],
     'params' => $params,
 ];
@@ -67,7 +71,7 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['192.168.56.1', '::1'],
     ];
 
     $config['bootstrap'][] = 'gii';

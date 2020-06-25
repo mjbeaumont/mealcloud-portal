@@ -14,7 +14,7 @@ $item_class = isset($text_color) ? 'text-' . $text_color : '';
 
 <div class="list-group">
 	<?php foreach ($orders as $order):?>
-	<a href="<?php echo Url::to(['/order/detail', 'id' => $order->id])?>" class="list-group-item">
+	<a href="<?php echo Url::to(['order/detail', 'id' => $order->id])?>" class="list-group-item">
         <div class="order-item <?php echo $item_class?>">
 			<div><?php echo $order->TypeDescription?></div>
 			<div><?php echo $order->name?><br> <?php echo $order->CountItems?> Items for <?php echo $order->number?></div>

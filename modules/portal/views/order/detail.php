@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 ?>
 <div class="back-button-container">
-    <?php echo Html::a("<i class=\"fa fa-fw fa-long-arrow-alt-left\"></i> Back to order list", ['/order'], ['class' => 'btn btn-default btn-lg']);?>
+    <?php echo Html::a("<i class=\"fa fa-fw fa-long-arrow-alt-left\"></i> Back to order list", ['/portal/order'], ['class' => 'btn btn-default btn-lg']);?>
 </div>
 
 <div class="panel panel-default">
@@ -15,8 +15,8 @@ use yii\helpers\Html;
         <h3>Order details for #<?php echo $model->number?></h3>
         <div class="button-container">
 		    <?php if ($model->status === $model::STATUS_NEW):?>
-			    <?= Html::a('Accept', ['/order/accept', 'id' => $model->id], ['class'=>'btn btn-success']) ?>
-			    <?= Html::a('Cancel', ['/order/cancel', 'id' => $model->id],
+			    <?= Html::a('Accept', ['/portal/order/accept', 'id' => $model->id], ['class'=>'btn btn-success']) ?>
+			    <?= Html::a('Cancel', ['/portal/order/cancel', 'id' => $model->id],
                     ['class'=>'btn btn-danger',
                      'data' => [
                         'confirm' => 'This will refund ' . \Yii::$app->formatter->asCurrency($model->total) . ' to your customer and cancel the order. Are you sure?'

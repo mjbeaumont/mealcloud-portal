@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers;
+namespace app\modules\portal\controllers;
 use app\models\Order;
 use app\models\Settings;
 use yii\filters\AccessControl;
