@@ -29,6 +29,10 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+	    'payment' => [
+	        'class' => \app\components\StripePayments::class,
+		    'apiKey' => env('MC_STRIPE_API_KEY')
+	    ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set
