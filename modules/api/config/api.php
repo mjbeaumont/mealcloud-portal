@@ -47,16 +47,12 @@ $config = [
 	],
 	'params' => [
 		'cors' => [
-			'Origin' => ['https://mealcloud.beaumontwebdev.com'],
+			'Origin' => explode(",", env("MC_CORS_ALLOWED_DOMAINS")),
 			'Access-Control-Request-Method' => ['POST', 'OPTIONS'],
 			'Access-Control-Request-Headers' => ['Content-Type', 'Authorization', 'X-Requested-With'],
 			'Access-Control-Max-Age' => 1000,
 		]
 	]
 ];
-
-if (YII_ENV_DEV) {
-	$config['params']['cors']['Origin'] = ['http://localhost:8080', 'http://localhost:8081', 'https://mealcloud.beaumontwebdev.com'];
-}
 
 return $config;
