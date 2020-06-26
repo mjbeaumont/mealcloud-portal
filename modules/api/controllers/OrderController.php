@@ -14,6 +14,12 @@ class OrderController extends Controller
 
 	}
 
+	public function actionIntent()
+	{
+		$amount = \Yii::$app->getRequest()->getBodyParam('amount');
+		return ['client_secret' => \Yii::$app->payment->createPaymentIntent($amount)];
+	}
+
 	public function actionProcess()
 	{
 		$model = new Order();

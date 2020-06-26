@@ -27,7 +27,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
 
     public function bootstrap($app) {
 	    $app->getUrlManager()->addRules([
-		    'POST api/order/process' => 'api/order/process',
+		    'POST api/order/<action:[\w\-]+>' => 'api/order/<action>',
 		    'api/order' => 'api/order/options'
 	    ], false);
     }
