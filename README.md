@@ -28,7 +28,7 @@ composer install
 Create a MySQL database. Copy .env.example to .env and fill in your database credentials. Then run:
 
 ````
-yii migrate
+./yii migrate
 ````
 You will also need a Stripe test API key, and you should enter all possible domains where orders can be submitted in order to configure the CORS response of the API.
 
