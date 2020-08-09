@@ -55,45 +55,46 @@ Submit an order. Payment will be validated by Stripe and order format will be va
   
 *  **URL Params**
 
-   **Required:**
-   
-   Order:
-   ````
-   date=[timestamp] (Unix timestamp of requested order date/time)
-   location=[integer] (Location ID)
-   name=[string]
-   email=[email]
-   subtotal=[integer|float]
-   tax=[integer|float]
-   gratuity=[integer|float]
-   total=[integer|float]
-   items=[array]
-   ````
-   
-   Order Item:
-   ````
-   description=[string]
-   qty=[integer]
-   price=[integer|float]
-   ````
-   
-   **Optional:**
-      
-      Order:
-      ````
-      phone=[string] 
-      curbside=[boolean]
-      utentils=[boolean]
-      instructions=[string]
-      ````
-      Order Item:
-      ````
-      requests=[string]
-      ````
+   None
 
 * **Data Params**
 
-  None
+  **Required:**
+     
+     Order:
+     ````
+     date=[timestamp] (Unix timestamp of requested order date/time)
+     location=[integer] (Location ID)
+     name=[string]
+     email=[email]
+     subtotal=[integer|float]
+     tax=[integer|float]
+     gratuity=[integer|float]
+     total=[integer|float]
+     items=[array]
+     ````
+     
+     Order Item:
+     ````
+     description=[string]
+     qty=[integer]
+     price=[integer|float]
+     ````
+     
+  **Optional:**
+        
+     Order:
+     ````
+     phone=[string] 
+     curbside=[boolean]
+     utentils=[boolean]
+     instructions=[string]
+     ````
+     
+     Order Item:
+     ````
+     requests=[string]
+     ````
 
 * **Success Response:**
 
