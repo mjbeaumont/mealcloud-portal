@@ -5,6 +5,8 @@ This is the back end code for a prototype of a re-usable restaurant ordering app
 
 This was used to pitch the idea of a re-usable ordering platform that could embedded in the overall design of a restaurant's website to allow them to accept online orders quickly, and was created in under a month. It is a WIP.
 
+Please see [TODO](#TODO) for important notes.
+
 See [DEMO](https://mealcloud-portal.beaumontwebdev.com) 
 
 ## Technologies Used
@@ -18,6 +20,10 @@ See [DEMO](https://mealcloud-portal.beaumontwebdev.com)
 2. Allows creation of multiple users
 3. Users can manage order status
 4. Orders submit to a backend portal (see above) where they are stored for processing.
+
+## API
+
+See description of endpoints [here](api.md)
 
 ## Installation
 
@@ -34,4 +40,5 @@ You will also need a Stripe test API key, and you should enter all possible doma
 
 ## TODO
 
+1. For purposes of this demo, the menu and cart totals are being provided by the frontend. We would NEVER do this in real life, so all of this functionality should be moved into this repo.
 1. Add Unit/E2E tests
