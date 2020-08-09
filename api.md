@@ -98,7 +98,7 @@ Submit an order. Payment will be validated by Stripe and order format will be va
 * **Success Response:**
 
   * **Code:** 201 <br />
-    **Content:** `{ order : {} }`
+    **Content:** `{"date":1597246200,"location":1,"name":"Matthew Beaumont","email":"test@test.com","phone":"(201) 555-1234","curbside":0,"utensils":1,"instructions":"Please include extra ketchup","subtotal":40,"tax":4,"gratuity":4,"total":48,"status":0,"source":0,"printed":0,"type":0,"created_at":1596989277,"updated_at":1596989277,"id":5,"number":"1000005"}`
 
 * **Error Response:**
 
