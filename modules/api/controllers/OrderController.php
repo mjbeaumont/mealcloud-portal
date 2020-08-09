@@ -17,6 +17,9 @@ class OrderController extends Controller
 	public function actionIntent()
 	{
 		$amount = \Yii::$app->getRequest()->getBodyParam('amount');
+		if (!is_int($amount)) {
+			throw new ServerErrorHttpException('Amount must be an integer', 422);
+		}
 		return ['client_secret' => \Yii::$app->payment->createPaymentIntent($amount)];
 	}
 
